@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
-import { Button, TouchableHighlight, TouchableOpacity } from 'react-native-web';
+import { StyleSheet, Text, View, Image, SafeAreaView , TouchableOpacity} from 'react-native';
 
 export default function HomeScreen({ route, navigation }) {
     const { location } = route.params;
@@ -33,13 +32,14 @@ export default function HomeScreen({ route, navigation }) {
             <View>
               <Image source={require("./assets/primaryimage.png")} style = {styles.primaryimg}/>
             </View>
+            <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={handlePress}>
             <Image source={require("./assets/plus.png")} style={styles.plus}/>
             <Text style={styles.buttontext}>Add to Donation</Text>
-          </TouchableOpacity>
+            </TouchableOpacity></View>
         </View>
         <View style={styles.liteline} />
-        <View style={styles.iconcontainer}>
+        {/* <View style={styles.iconcontainer}>
             <Image source={require("./assets/homepage.png")} style = {styles.homeicon}/>
             <Image source={require("./assets/donateplus.png")} style = {styles.donateplusicon}/>
             <Image source={require("./assets/message.png")} style = {styles.messageicon}/>
@@ -48,6 +48,20 @@ export default function HomeScreen({ route, navigation }) {
           <Text style = {styles.home}>Home</Text>
           <Text style = {styles.donateplus}>Donate</Text>
           <Text style = {styles.chat}>Chat</Text>
+        </View> */}
+        <View style={styles.navbar}>
+        <View>
+            <Image source={require("./assets/homepage.png")} style = {styles.homeicon}/>
+            <Text>Home</Text>
+        </View>
+        <View>
+            <Image source={require("./assets/donateplus.png")} style = {styles.donateplusicon}/>
+            <Text style = {styles.navtext}>Donate</Text>
+        </View>
+        <View>
+            <Image source={require("./assets/message.png")} style = {styles.messageicon}/>
+            <Text style = {styles.navtext}>Chat</Text>
+        </View>
         </View>
 
       </SafeAreaView>
@@ -57,11 +71,11 @@ export default function HomeScreen({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         marginTop: 30,
         backgroundColor:"white",
     },
     currentContainer: {
+        padding: 20,
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: 20,
@@ -91,12 +105,13 @@ const styles = StyleSheet.create({
         position:"absolute"
       },
       line: {
-        marginTop:20,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#000000',
+        marginTop:30,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(0, 0, 0, 0.20)',
         marginBottom: 20,
       },
       headder:{
+        paddingLeft:20,
         fontSize:20,
         fontWeight:"500",
       },
@@ -104,34 +119,40 @@ const styles = StyleSheet.create({
         color:"#3468C0",
       },
       description:{
+        paddingLeft:20,
         paddingTop:10,
         fontSize:14,
         color:"#5A5959",
       },
+      buttonContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:'58%',
+      },
       button:{
-        padding:30,
+        padding:10,
         color:"white",
         backgroundColor:"#3468C0",
         borderRadius:50,
-        marginTop:120,
-        marginLeft:50,
-        marginRight:50,
+        height:50,
+        width:220,
       },
       buttontext:{
         color:"white",
-        marginLeft:60,
-        fontSize:14,
+        marginLeft:'25%',
+        fontSize:18,
         fontWeight:"500",
         shadowColor:"#000000"
       },
       plus:{
-        height:24,
-        width:24,
-        marginTop:30,
-        marginLeft:30,
-        position:"absolute"
+        height: 16,
+        width: 16,
+        position: 'absolute',
+        top: '80%', // Position vertically centered
+        transform: [{ translateY: -10 }], // Adjust for half of the height
+        left: 25,
       },
-    
       primaryimg:{
         height: 264,
         width: 264,
@@ -140,18 +161,18 @@ const styles = StyleSheet.create({
         alignSelf: "center",
       },
       liteline: {
-        marginTop:30,
-        borderBottomWidth: 0.5,
-        borderBottomColor: 'grey',
-        marginBottom: 10,
+        marginTop:53,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(0, 0, 0, 0.20)',
+        marginBottom: 0,
       },
-      iconcontainer: {
+      navbar: {
+        marginTop:10,
         flexDirection: 'row',
-        justifyContent: 'space-between', // Distribute items evenly along the main axis
-        alignItems: 'center', // Center items along the cross axis
-        paddingHorizontal: 30, // Adjust padding as needed
-        height: 50, // Adjust height as needed
-        // position:"absolute"
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        paddingHorizontal: 35,
+        height: 50, 
       },
       homeicon: {
         height: 24,
@@ -160,25 +181,13 @@ const styles = StyleSheet.create({
       donateplusicon: {
         height: 24,
         width: 24,
+        marginLeft: 8,
       },
       messageicon: {
         height: 24,
         width: 24,
       },
-      icontextcontainer:{
-        fontSize:14,
-        fontWeight:"500",
-      },
-      home:{
-        paddingLeft:23,
-        position:"absolute"
-      },
-      donateplus:{
-        marginLeft:155,
-        position:"absolute"
-      },
-      chat:{
-        marginLeft:297,
+      navtext : {
+        color:"#8F9092",
       }
-
 });
