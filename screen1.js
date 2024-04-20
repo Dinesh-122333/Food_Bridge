@@ -11,6 +11,7 @@ export default function Screen1({ navigation }) {
     if (name && mobileNumber && email) {
       // Navigate to the next screen
       navigation.navigate('Screen2', { name: name });
+      
     } else {
       // Show alert if any input field is empty
       Alert.alert('Incomplete Details', 'Please fill in all the details');
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: 'white',
   },
   description: {
     color: '#374151',

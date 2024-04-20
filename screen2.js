@@ -6,7 +6,7 @@ export default function Screen2({ route, navigation }) {
 
   const handleDonorPress = () => {
     // Handle Donor button press
-    navigation.navigate('Donor1'); 
+    navigation.navigate('Donor1', {name: name}); 
   };
   
   const handleReceiverPress = () => {
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     marginTop: 50,
+    backgroundColor: 'white',
   },
   descripi: {
     color: '#374151',
