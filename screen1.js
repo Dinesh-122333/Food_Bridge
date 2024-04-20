@@ -12,12 +12,14 @@ export default function Screen1({ navigation }) {
 
     if (name && mobileNumber && email) {
       // Navigate to the next screen
-      navigation.navigate('Screen2');
+      navigation.navigate('Screen2', { name: name });
+      
     } else {
       // Show alert if any input field is empty
       Alert.alert('Incomplete Details', 'Please fill in all the details');
     }
   };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -62,6 +64,7 @@ export default function Screen1({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
+      backgroundColor: 'white',
       flex: 1,
       padding: 20,
       justifyContent: 'space-between',
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
     },
     input: {
       padding: 10,
-      borderColor: '#ADABAB',
+      borderColor: '#5A5959',
       borderWidth: 1,
       borderRadius: 10,
       marginBottom: 20,

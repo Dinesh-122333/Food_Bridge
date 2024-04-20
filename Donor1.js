@@ -5,7 +5,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 export default function Donor1() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Enter Your Location</Text>
+      <Text style={styles.text}>Enter Your Location</Text>
       <GooglePlacesAutocomplete
         placeholder="Try GKM palace, etc"
         onPress={(data, details = null) => {
@@ -18,7 +18,7 @@ export default function Donor1() {
         }}
         styles={{
           textInput: styles.input,
-        }}
+        }} 
       />
       <Button title="Search" onPress={() => console.log('Search button pressed')} />
       <Text style={styles.userlocation}>Use my current location</Text>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     marginTop: 50,
+    backgroundColor: 'white',
   },
   input: {
     padding: 10,
