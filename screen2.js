@@ -18,7 +18,7 @@ export default function Screen2({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.baseText}>Hey {name}</Text>
-      <Text style={styles.descripi}>You are ________________ </Text>
+      <Text style={styles.descripi}>You are  a ________________</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleDonorPress}>
           <Text style={styles.buttonText}>Donor</Text>
@@ -27,11 +27,9 @@ export default function Screen2({ route, navigation }) {
           <Text style={styles.buttonText}>Receiver</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.line} />
-      <Text style={styles.quote}>A simple act of sharing food can have a profound impact on someone's life</Text>
-      <Text style={styles.author}>John Doe</Text>
+      <View style={styles.lines} />
       <Image 
-         // Replace 'path/to/your/image.jpg' with the actual path to your image
+         source={require('./assets/images/screen2.png')}
         style={styles.img}
       />
     </SafeAreaView>
@@ -40,8 +38,8 @@ export default function Screen2({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     flex: 1,
-    padding: 20,
     marginTop: 50,
     backgroundColor: 'white',
   },
@@ -50,15 +48,20 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginTop: 20,
     fontSize: 20,
-  },
+    paddingLeft:20,
+    marginBottom:20,
+  },  
   baseText: {
-    color: 'dodgerblue',
+    color: '#3468C0',
     fontSize: 30,
     fontWeight: '700',
+    paddingLeft:20,
+    marginTop:30,
   },
   buttonContainer: {
     flexDirection: 'row', // Ensure buttons are displayed in the same row
     // justifyContent: 'center', // Center buttons horizontally
+    paddingLeft:20,
   },
   button: {
     backgroundColor: 'white',
@@ -66,9 +69,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingVertical: 10,
     paddingHorizontal: 35,
-    borderRadius: 5,
+    borderRadius: 10,
     marginVertical: 20,
-    marginRight: 65, // Add some horizontal margin between buttons
+    marginLeft: 15,
+    marginRight: 40, // Add some horizontal margin between buttons
   },
   buttonText: {
     color: '#3468C0',
@@ -76,23 +80,16 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
-  line: {
-    borderBottomWidth: 1, // Add a 1px borderBottom
-    borderBottomColor: '#000000', // Set the color of the borderBottom
-    marginVertical: 20, 
-    paddingHorizontal: 10,
-  },
-  quote: {
-    marginLeft: 10,
-  },
-  author: {
-    marginTop: 10,
-    marginLeft: 250,
+  lines: {
+    height: 1.2, // Adjust the height of the line as needed
+    backgroundColor: 'rgba(0, 0, 0, 0.20)', // Set the color of the line
+    marginVertical: 8, 
   },
   img: {
-    width: 200, // Adjust width as needed
-    height: 200, // Adjust height as needed
-    borderRadius: 10, // Add borderRadius as needed
+    marginTop:15,
+    width: 330, // Adjust width as needed
+    height: 330, // Adjust height as needed
+    borderRadius: 0, // Add borderRadius as needed
     alignSelf: 'center', // Align image to the center horizontally
   },
 });
