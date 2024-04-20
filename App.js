@@ -7,6 +7,7 @@ import Donor1 from './Donor1';
 import HomeScreen from './Homescreen'; 
 import Enterdetial from './Enterdetials';
 import Enterdishes from './Enterdishes';
+import Confimation from './Confirmation';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
   <Stack.Screen name= "Homescreen" component={HomeScreen} options={{headerShown: false}}/>
   <Stack.Screen name= "Enterdetials" component={Enterdetial} options={{headerShown: false}}/>
   <Stack.Screen name='Enterdishes' component={Enterdishes} options={{headerShown: false}}/>
+  <Stack.Screen name='Confirmation' component={Confimation} options={{headerShown: false}}/>
   </Stack.Navigator>
   </NavigationContainer>
   );
