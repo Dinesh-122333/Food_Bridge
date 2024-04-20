@@ -13,7 +13,11 @@ export default function Donor1({ navigation, route }) {
 
   return (
     <SafeAreaView style={styles.container}>
+<<<<<<< HEAD
       <Text style={styles.title}>Enter your location</Text>
+=======
+      <Text style={styles.title}>Enter Your Location</Text>
+>>>>>>> f9c5ceab67b64747e04ea8a82b5f5916b9fddac3
       <View style={styles.inputContainer}>
         <Image
           source={require('./assets/search.png')}
@@ -64,7 +68,11 @@ const styles = StyleSheet.create({
   placeholderImage: {
     width: 20,
     height: 20,
+<<<<<<< HEAD
     marginRight: 0,
+=======
+    marginRight: 10,
+>>>>>>> f9c5ceab67b64747e04ea8a82b5f5916b9fddac3
   },
   input: {
     flex: 1,
