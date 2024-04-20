@@ -63,42 +63,6 @@ export default function Screen1({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'white',
-  },
-  description: {
-    color: '#374151',
-    fontWeight: '500',
-  },
-  baseText: {
-    color: 'dodgerblue',
-    fontSize: 30,
-    fontWeight: '700',
-    paddingTop: 50,
-
-  },
-  inner: {
-    paddingTop: 30,
-  },
-  input: {
-    padding: 10,
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-  inputheader: {
-    paddingBottom: 10,
-  },
-  button:{
-    marginTop:60,
-    backgroundColor:"Dodgerblue"
-  }
-});
-=======
     container: {
       backgroundColor: 'white',
       flex: 1,
@@ -151,4 +115,3 @@ const styles = StyleSheet.create({
         fontWeight: '600',
       }
 });
->>>>>>> 0f7caf9c3410a1f4af60acc90e8d1ce88b6f3940
