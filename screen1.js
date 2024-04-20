@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,TouchableOpacity, TextInput, Alert } from 'react-native';
+
 
 export default function Screen1({ navigation }) {
+
   const [name, setName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -10,7 +12,7 @@ export default function Screen1({ navigation }) {
 
     if (name && mobileNumber && email) {
       // Navigate to the next screen
-      navigation.navigate('Screen2', { name: name });
+      navigation.navigate('Screen2');
     } else {
       // Show alert if any input field is empty
       Alert.alert('Incomplete Details', 'Please fill in all the details');
@@ -20,73 +22,93 @@ export default function Screen1({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.baseText}>Welcome</Text>
-      <Text style={styles.description}>Let’s get you started, Enter your details here</Text>
+      <Text style={styles.description}>let’s get you started, Enter your details here</Text>
       <View style={styles.inner}>
         <Text style={styles.inputheader}>Name</Text>
         <TextInput
           style={styles.input}
-          placeholder="Enter your name here"
+          placeholder="enter your name here"
           value={name}
           onChangeText={setName}
         />
-        <Text style={styles.inputheader}>Mobile Number</Text>
+        <Text style={styles.inputheader}>Mobile number</Text>
         <TextInput
           style={styles.input}
-          placeholder="Enter your mobile number here"
+          placeholder="enter your mobile number here"
           value={mobileNumber}
           onChangeText={setMobileNumber}
           keyboardType="numeric"
         />
-        <Text style={styles.inputheader}>Email</Text>
+        <Text style={styles.inputheader}>Email address</Text>
         <TextInput
           style={styles.input}
-          placeholder="Enter your email address here"
+          placeholder="enter your email address here"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
         />
       </View>
-      <Button
-      style = {styles.button}
-        title="Get started"
+      <TouchableOpacity
+        style={[styles.button, (!name || !mobileNumber || !email) ? styles.disabledButton : styles.enabledButton]}
         onPress={handlePress}
-        disabled={!name || !mobileNumber || !email} // Disable button if any input field is empty
-      />
+        disabled={!name || !mobileNumber || !email}
+        activeOpacity={0.8}
+      >
+      <Text style={styles.buttonText}>Get Started</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  description: {
-    color: '#374151',
-    fontWeight: '500',
-  },
-  baseText: {
-    color: 'dodgerblue',
-    fontSize: 30,
-    fontWeight: '700',
-    paddingTop: 50,
-
-  },
-  inner: {
-    paddingTop: 30,
-  },
-  input: {
-    padding: 10,
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-  inputheader: {
-    paddingBottom: 10,
-  },
-  button:{
-    marginTop:60,
-    backgroundColor:"Dodgerblue"
-  }
+    container: {
+      flex: 1,
+      padding: 20,
+      justifyContent: 'space-between',
+    },
+    description: {
+      color: '#374151',
+      fontWeight: '300',
+      fontSize:18,
+    },
+    baseText: {
+      color: '#3468C0',
+      fontSize: 30,
+      fontWeight: '700',
+      marginTop:56,
+    },
+    inner: {
+      flex: 1,
+    },
+    input: {
+      padding: 10,
+      borderColor: '#ADABAB',
+      borderWidth: 1,
+      borderRadius: 10,
+      marginBottom: 20,
+    },
+    inputheader: {
+      color:'#1D1D1D',
+      fontSize:16,
+      marginTop:20,
+      paddingBottom: 10,
+    },
+    button: {
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        alignItems: 'center',
+        borderRadius: 10,
+        backgroundColor: "grey", 
+      },
+      enabledButton: {
+        backgroundColor: "#3468C0", 
+      },
+      disabledButton: {
+        backgroundColor: "lightgrey", 
+      },
+      buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '600',
+      }
 });
