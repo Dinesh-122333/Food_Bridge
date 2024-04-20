@@ -21,7 +21,7 @@ export default function HomeScreen({ route, navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.currentContainer}>
-          <Image source={require("./assets/location-arrow.png")} style={styles.locationImage} />
+          <Image source={require("./assets/arrow.png")} style={styles.locationImage} />
           <Text style={styles.userLocation}>{formattedLocation}</Text>
         </View>
         <Image source={require("./assets/account.png")} style = {styles.usericon}/>
