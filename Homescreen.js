@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
-import { Button, TouchableHighlight, TouchableOpacity } from 'react-native-web';
+// Update the import statement for TouchableOpacity
+import { TouchableOpacity } from 'react-native';
 
 export default function HomeScreen({ route, navigation }) {
     const { location } = route.params;
@@ -28,33 +29,32 @@ export default function HomeScreen({ route, navigation }) {
         <Text style={styles.userfullLocation}>{truncatedLocation}</Text>
         <View style={styles.line} />
         <View>
-            <Text style = {styles.headder}>Hey <Text style={styles.name}>{name}</Text></Text>
+            <Text style = {styles.header}>Hey <Text style={styles.name}>{name}</Text></Text>
             <Text style = {styles.description}>Begin with a donation and let the goodness spread</Text>
             <View>
               <Image source={require("./assets/primaryimage.png")} style = {styles.primaryimg}/>
             </View>
             <TouchableOpacity style={styles.button} onPress={handlePress}>
             <Image source={require("./assets/plus.png")} style={styles.plus}/>
-            <Text style={styles.buttontext}>Add to Donation</Text>
+            <Text style={styles.buttonText}>Add to Donation</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.liteline} />
-        <View style={styles.iconcontainer}>
-            <Image source={require("./assets/homepage.png")} style = {styles.homeicon}/>
-            <Image source={require("./assets/donateplus.png")} style = {styles.donateplusicon}/>
-            <Image source={require("./assets/message.png")} style = {styles.messageicon}/>
+        <View style={styles.line} />
+        <View style={styles.iconContainer}>
+            <Image source={require("./assets/homepage.png")} style = {styles.homeIcon}/>
+            <Image source={require("./assets/donateplus.png")} style = {styles.donatePlusIcon}/>
+            <Image source={require("./assets/message.png")} style = {styles.messageIcon}/>
         </View>
-        <View style={styles.icontextcontainer}>
+        <View style={styles.iconTextContainer}>
           <Text style = {styles.home}>Home</Text>
-          <Text style = {styles.donateplus}>Donate</Text>
+          <Text style = {styles.donatePlus}>Donate</Text>
           <Text style = {styles.chat}>Chat</Text>
         </View>
-
       </SafeAreaView>
     );
   }
   
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#000000',
         marginBottom: 20,
       },
-      headder:{
+      header:{
         fontSize:20,
         fontWeight:"500",
       },
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         marginLeft:50,
         marginRight:50,
       },
-      buttontext:{
+      buttonText:{
         color:"white",
         marginLeft:60,
         fontSize:14,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'grey',
         marginBottom: 10,
       },
-      iconcontainer: {
+      iconContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between', // Distribute items evenly along the main axis
         alignItems: 'center', // Center items along the cross axis
@@ -153,19 +153,19 @@ const styles = StyleSheet.create({
         height: 50, // Adjust height as needed
         // position:"absolute"
       },
-      homeicon: {
+      homeIcon: {
         height: 24,
         width: 24,
       },
-      donateplusicon: {
+      donatePlusIcon: {
         height: 24,
         width: 24,
       },
-      messageicon: {
+      messageIcon: {
         height: 24,
         width: 24,
       },
-      icontextcontainer:{
+      iconTextContainer:{
         fontSize:14,
         fontWeight:"500",
       },
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         paddingLeft:23,
         position:"absolute"
       },
-      donateplus:{
+      donatePlus:{
         marginLeft:155,
         position:"absolute"
       },
