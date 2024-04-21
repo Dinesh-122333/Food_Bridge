@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginLeft: 5,
         position: "absolute",
+       
     },
     title: {
         fontSize: 20,

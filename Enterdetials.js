@@ -30,15 +30,15 @@ export default function EnterDetails({ route, navigation }) {
 
     const servingButtonStyle = (servings) => {
         return {
-            paddingHorizontal: 30,
-            paddingVertical: 10,
+            paddingHorizontal: 25,
+            paddingVertical: 5,
             borderColor: servings === selectedServings ? "#1B8BF5" : "#1B8BF5",
-            borderWidth: 2,
-            borderRadius: 10,
+            borderWidth: 1,
+            borderRadius: 8,
             backgroundColor: servings === selectedServings ? "#F0F9FF" : "#F0F9FF",
             marginRight: 20,
-            color: servings === selectedServings ? "#1B8BF5" : "#5A5959",
-            fontSize: 12
+            color: servings === selectedServings ? "#1B8BF5" : "#1B8BF5",
+            fontSize: 15
         };
 
 
@@ -47,12 +47,12 @@ export default function EnterDetails({ route, navigation }) {
         const bgcolor = getCategoryColor(category);
         const color = getCategoryMainColor(category)
         return {
-            paddingHorizontal: 25,
-            paddingVertical: 10,
-            borderWidth: 1,
-            borderRadius: 10,
+            paddingHorizontal: 30,
+            paddingVertical: 6,
+            borderWidth: 0.5,
+            borderRadius: 8,
             backgroundColor: category === selectedCategory ? bgcolor : "white",
-            borderColor:category === selectedCategory ? color : "black", // Set border color to respective category color
+            borderColor:category === selectedCategory ? color : "#ADABAB", // Set border color to respective category color
             color: category === selectedCategory ? color : "white",
             marginRight: 20,
             color: getCategoryColor(category),
@@ -88,15 +88,28 @@ export default function EnterDetails({ route, navigation }) {
         }
     };
     const renderCategoryButton = (category, iconSource) => {
+        // Define styles for each category
+        let categoryTextStyle = styles.categoryButtonText;
+        if (category === 'Veg') {
+          categoryTextStyle = [categoryTextStyle, styles.vegtext];
+        } else if (category === 'Non-Veg') {
+          categoryTextStyle = [categoryTextStyle, styles.nonvegtext];
+        } else if (category === 'Both') {
+          categoryTextStyle = [categoryTextStyle, styles.bothtext];
+        }
+      
         return (
-            <TouchableOpacity onPress={() => handleCategoryPress(category)}>
-                <View style={categoryButtonStyle(category)}>
-                    <Image source={iconSource} style={styles.categoryIcon} />
-                    <Text style={styles.categoryButtonText}>{category}</Text>
-                </View>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleCategoryPress(category)}>
+            <View style={categoryButtonStyle(category)}>
+              <Image source={iconSource} style={styles.categoryIcon} />
+              <Text style={categoryTextStyle}>{category}</Text>
+            </View>
+          </TouchableOpacity>
         );
-    };
+      };
+      
+
+    
 
     const mealButtonStyle = (mealType) => {
         return {
@@ -129,6 +142,7 @@ export default function EnterDetails({ route, navigation }) {
                 <View style={styles.header}>
                     <Image source={require("./assets/keyboard_backspace.png")} style={styles.back} />
                     <Text style={styles.title}>Enter Details</Text>
+                    <Image source={require("./assets/info.png")} style={styles.info} />
                 </View>
                 <View style={styles.line} />
                 <Image source={require("./assets/progress_bar.png")} style={styles.progressBar} />
@@ -181,7 +195,7 @@ export default function EnterDetails({ route, navigation }) {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View>
+            <View style={styles.additionalcontainer}>
             <Text style={styles.additionalTitle}>Additional Information 
             <Text style ={styles.innerText}>(optinal)</Text>
             </Text>
@@ -201,9 +215,8 @@ export default function EnterDetails({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         marginTop: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#FFFFFF',
     },
     upper: {
         shadowColor: '#000',
@@ -217,48 +230,65 @@ const styles = StyleSheet.create({
         paddingBottom: 20, // Adjust this value to control the distance from the bottom
     },
     header: {
+        padding: 20,
+        marginTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
     },
     back: {
         marginTop: 8,
-        marginLeft: 5,
+        marginLeft: 15,
         position: "absolute",
+        height:22,
+        width: 22,
     },
     title: {
         fontSize: 20,
         fontWeight: "500",
         marginLeft: 30
     },
+    info: {
+        marginTop: 7,
+        marginLeft: 205,
+        height:20,
+        width: 20,
+    },
     line: {
-        marginTop: 17,
-        borderBottomWidth: 0.5,
-        borderBottomColor: 'grey',
+        padding:0,
+        marginTop: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ADABAB40',
         marginBottom: 10,
     },
     progressBar: {
         alignSelf: "center",
-        marginTop: 10
+        marginTop: 10,
+        height:22.5,
+        width:280,
     },
     progressDetails: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "space-between",
-        paddingLeft: 25,
-        paddingRight: 45,
+        paddingLeft: 35,
+        paddingRight: 50,
     },
     primaryDetails: {
-        fontSize: 10
+        fontSize: 12,
     },
     dishes: {
-        fontSize: 10,
-        paddingRight: 20
+        fontSize: 12,
+        paddingRight: 20,
+        color: '#ADABAB',
     },
     publish: {
-        fontSize: 10
+        fontSize: 12,
+        color: '#ADABAB',
     },
     servingcontainer:{
-        marginTop:24,
+        paddingLeft: 20,
+        paddingRight:20,
+        marginTop:2,
     },
     servingTitle:{
         marginBottom:8,
@@ -266,7 +296,7 @@ const styles = StyleSheet.create({
     },
     serving:{
     padding: 10,
-    borderColor: '#5A5959',
+    borderColor: '#ADABAB',
     borderWidth: 1,
     borderRadius: 10,
     marginBottom: 8,
@@ -309,52 +339,50 @@ const styles = StyleSheet.create({
         fontSize:12
     },
     categoryContainer:{
-        marginTop:32,
-        
+        paddingLeft: 20,
+        marginTop:30,
     },
     categoryIcon: {
-        marginRight: 3, 
+        marginRight: 0, 
+        height:20,
+        width: 20,
     },
     categoryButtonText: {
-        fontSize: 12,
-        marginLeft: 5, // Add some margin between the icon and the text
+        fontSize: 15,
+        marginLeft: 5,// Add some margin between the icon and the text
     },
     category:{
         fontSize:18,
         marginBottom:8
     },
     categoryButtons:{
+        marginTop:5,
         flexDirection: 'row',
+        color:"#ADABAB"
     },
     veg:{
         paddingHorizontal:25,
         paddingVertical:10,
-     
         borderWidth:1,
         borderRadius:10,
         backgroundColor:"white",
         marginRight:20,
-        color:"#059669"
+        color:"#ADABAB"
     },
-    textveg:{
+    vegtext:{
         color:"#059669",
-        marginLeft:8,
-        fontSize:12
     },
     nonVeg:{
         paddingHorizontal:25,
         paddingVertical:10,
-        
         borderWidth:1,
         borderRadius:10,
         backgroundColor:"white",
         marginRight:20,
         
     },
-    textnonVeg:{
+    nonvegtext:{
         color:"#7D0A0A",
-        marginLeft:8,
-        fontSize:12
     },
     both:{
         paddingHorizontal:25,
@@ -365,10 +393,8 @@ const styles = StyleSheet.create({
         backgroundColor:"white",
         
     },
-    textboth:{
+    bothtext:{
         color:"#D97706",
-        marginLeft:8,
-        fontSize:12
     },
     Img:{
         position:"absolute",
@@ -376,6 +402,8 @@ const styles = StyleSheet.create({
         marginTop:12,   
     },
     mealcontainer:{
+        paddingRight:20,
+        paddingLeft: 20,
         marginTop:24,
     },
     mealTitle:{
@@ -437,6 +465,10 @@ const styles = StyleSheet.create({
         marginLeft:8,
         marginTop:10,   
     },
+    additionalcontainer:{
+        paddingRight:20,
+        paddingLeft:20,
+    },
     additionalTitle:{
         marginTop:32,
         fontSize:18,
@@ -454,9 +486,9 @@ const styles = StyleSheet.create({
         borderRadius:10,
     },
     next:{
-        marginTop:100,
-        paddingRight:25,
-        paddingLeft:30,
+        marginTop:30,
+        marginLeft:20,
+        marginRight:20,
         paddingVertical:16,
         borderColor:"#1B8BF5",
         borderWidth:2,
