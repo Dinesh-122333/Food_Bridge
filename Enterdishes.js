@@ -40,7 +40,7 @@ export default function Enterdishes({ route, navigation }) {
                     </View>
                 </View>
                 <View style={styles.textbox}>
-                    <Image source={require("./assets/search.png")} style={styles.searchImg} />
+                    <Image source={require("./assets/search1.png")} style={styles.searchImg} />
                     <TextInput
                         placeholder='Try Idly'
                         style={styles.searchInput}
