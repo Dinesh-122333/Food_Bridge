@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput,TouchableOpacity } from 'react-native';
 
-
 export default function EnterDetails({ route, navigation }) {
     const { name } = route.params;
     const [numberofServing, setnumberofServing] = useState('');
@@ -9,7 +8,7 @@ export default function EnterDetails({ route, navigation }) {
 
     const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const [selectedMealType, setSelectedMealType] = useState(null);
+    const [selectedmealType, setSelectedmealType] = useState(null);
 
     const handleServingPress = (servings) => {
         setnumberofServing(servings);
@@ -20,8 +19,8 @@ export default function EnterDetails({ route, navigation }) {
         setSelectedCategory(category);
     };
 
-    const handleMealTypePress = (mealType) => {
-        setSelectedMealType(mealType);
+    const handlemealTypePress = (mealType) => {
+        setSelectedmealType(mealType);
     };
 
     const handleDetials = () => {
@@ -107,33 +106,71 @@ export default function EnterDetails({ route, navigation }) {
           </TouchableOpacity>
         );
       };
+
+      const rendermenuButton = (category, iconSource) => {
+        // Define styles for each category
+        let categoryTextStyle = styles.categoryButtonText;
+        if (category === 'Breakfast') {
+          categoryTextStyle = [categoryTextStyle, styles.mealtext];
+        } else if (category === 'Lunch') {
+          categoryTextStyle = [categoryTextStyle, styles.mealtext];
+        } else if (category === 'Dinner') {
+          categoryTextStyle = [categoryTextStyle, styles.mealtext];
+        }
       
+        return (
+          <TouchableOpacity onPress={() => handlemealTypePress(category)}>
+            <View style={menuButtonStyle(category)}>
+              <Image source={iconSource} style={styles.categoryIcon} />
+              <Text style={categoryTextStyle}>{category}</Text>
+            </View>
+          </TouchableOpacity>
+        );
+      };
 
-    
-
-    const mealButtonStyle = (mealType) => {
+      const menuButtonStyle = (mealType) => {
+        const bgcolor = getmealTypeColor(mealType);
+        const color = getmealTypeMainColor(mealType)
         return {
-            paddingRight: 25,
-            paddingLeft: 30,
-            paddingVertical: 10,
-            borderColor: "#1B8BF5",
-            borderWidth: 2,
-            borderRadius: 10,
-            backgroundColor: mealType === selectedMealType ? "#1B8BF5" : "#F0F9FF",
+            paddingHorizontal: 30,
+            paddingVertical: 6,
+            borderWidth: 0.5,
+            borderRadius: 8,
+            backgroundColor: mealType === selectedmealType ? bgcolor : "white",
+            borderColor:mealType === selectedmealType ? color : "#1B8BF5", // Set border color to respective mealType color
+            color: mealType === selectedmealType ? color : "white",
             marginRight: 20,
-            color: mealType === selectedMealType ? "#FFFFFF" : "#1B8BF5",
+            color: getmealTypeColor(mealType),
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingHorizontal:10,
         };
     };
 
-    const renderMealButton = (mealType, iconSource) => {
-        return (
-            <TouchableOpacity onPress={() => handleMealTypePress(mealType)}>
-                <View style={mealButtonStyle(mealType)}>
-                    <Image source={iconSource} style={styles.mealIcon} />
-                    <Text style={styles.mealButtonText}>{mealType}</Text>
-                </View>
-            </TouchableOpacity>
-        );
+    const getmealTypeColor = (mealType) => {
+        switch (mealType) {
+            case 'Breakfast':
+                return '#F0F9FF';
+            case 'Lunch':
+                return '#F0F9FF';
+            case 'Dinner':
+                return '#F0F9FF';
+            default:
+                return '#000000'; // Default color
+        }
+    };
+    const getmealTypeMainColor = (mealType) => {
+        switch (mealType) {
+            case 'Breakfast':
+                return '#1B8BF5';
+            case 'Lunch':
+                return '#1B8BF5';
+            case 'Dinner':
+                return '#1B8BF5';
+            default:
+                return '#000000'; // Default color
+        }
     };
 
     return (
@@ -151,6 +188,7 @@ export default function EnterDetails({ route, navigation }) {
                     <Text style={styles.dishes}>Name of Dishes</Text>
                     <Text style={styles.publish}>Publish</Text>
                 </View>
+                <View style={styles.line2} />
             </View>
             <View style={styles.servingcontainer}>
                 <Text style={styles.servingTitle}>Number of Servings</Text>
@@ -181,7 +219,7 @@ export default function EnterDetails({ route, navigation }) {
                     {renderCategoryButton('Both', require('./assets/both.png'))}
                 </View>
             </View>
-            <View style={styles.mealcontainer}>
+            {/* <View style={styles.mealcontainer}>
                 <Text style={styles.mealTitle}>Meal Type</Text>
                 <View style={styles.mealButtons}>
                     <TouchableOpacity onPress={() => handleMealTypePress("Breakfast")}>
@@ -194,16 +232,23 @@ export default function EnterDetails({ route, navigation }) {
                         <Text style={mealButtonStyle("Dinner")}>Dinner</Text>
                     </TouchableOpacity>
                 </View>
+            </View> */}
+            <View style={styles.mealContainer}>
+                <Text style={styles.category}>Meal Type</Text>
+                <View style={styles.mealButtons}>
+                    {rendermenuButton('Breakfast', require('./assets/breakfast.png'))}
+                    {rendermenuButton('Lunch', require('./assets/lunch.png'))}
+                    {rendermenuButton('Dinner', require('./assets/dinner.png'))}
+                </View>
             </View>
             <View style={styles.additionalcontainer}>
             <Text style={styles.additionalTitle}>Additional Information 
-            <Text style ={styles.innerText}>(optinal)</Text>
+            <Text style ={styles.innerText}> (optinal)</Text>
             </Text>
             <TextInput placeholder='type here...' style={styles.additionalDescription}/>
             </View>
             <View>
             <TouchableOpacity style = {styles.next} onPress={handleDetials}>
-
                     <Text style = {styles.textNext}>Next</Text>
                     <Image source={require("./assets/next.png")} style={styles.nextImg}/>
                 </TouchableOpacity>
@@ -285,10 +330,24 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#ADABAB',
     },
+    line2: {
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ADABAB40',
+        marginBottom: 0,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    
     servingcontainer:{
         paddingLeft: 20,
         paddingRight:20,
-        marginTop:2,
     },
     servingTitle:{
         marginBottom:8,
@@ -302,9 +361,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     },
     servingButtons:{
-        flexDirection: 'row',
-        
-               
+        flexDirection: 'row',        
     },
     twentyfive:{
         paddingHorizontal:30,
@@ -358,7 +415,6 @@ const styles = StyleSheet.create({
     categoryButtons:{
         marginTop:5,
         flexDirection: 'row',
-        color:"#ADABAB"
     },
     veg:{
         paddingHorizontal:25,
@@ -396,74 +452,16 @@ const styles = StyleSheet.create({
     bothtext:{
         color:"#D97706",
     },
-    Img:{
-        position:"absolute",
-        marginLeft:10,
-        marginTop:12,   
-    },
-    mealcontainer:{
-        paddingRight:20,
+    mealContainer:{
         paddingLeft: 20,
-        marginTop:24,
-    },
-    mealTitle:{
-        marginBottom:8,
-        fontSize:18
+        marginTop:30,
     },
     mealButtons:{
+        marginTop:5,
         flexDirection: 'row',
-        
-               
     },
-    Breakfast:{
-        paddingRight:25,
-        paddingLeft:30,
-        paddingVertical:10,
-        borderColor:"#1B8BF5",
-        borderWidth:2,
-        borderRadius:10,
-        backgroundColor:"#F0F9FF",
-        marginRight:20,
-        
-    },
-    textBreakfast:{
+    mealtext:{
         color:"#1B8BF5",
-        fontSize:12,
-        marginLeft:2,
-    },
-    Lunch:{
-        paddingRight:25,
-        paddingLeft:30,
-        paddingVertical:10,
-        borderColor:"#1B8BF5",
-        borderWidth:2,
-        borderRadius:10,
-        backgroundColor:"#F0F9FF",
-        marginRight:20,
-        color:"#1B8BF5"
-    },
-    textLunch:{
-        color:"#1B8BF5",
-        fontSize:12
-    },
-    Dinner:{
-        paddingRight:25,
-        paddingLeft:30,
-        paddingVertical:10,
-        borderColor:"#1B8BF5",
-        borderWidth:2,
-        borderRadius:10,
-        backgroundColor:"#F0F9FF",
-        color:"#1B8BF5"
-    },
-    textDinner:{
-        color:"#1B8BF5",
-        fontSize:12
-    },
-    mealImg:{
-        position:"absolute",
-        marginLeft:8,
-        marginTop:10,   
     },
     additionalcontainer:{
         paddingRight:20,
@@ -478,32 +476,38 @@ const styles = StyleSheet.create({
         color:"#5A5959"
     },
     additionalDescription:{
+        fontSize:18,
         borderWidth:1,
-        borderColor:"#5A5959",
+        borderColor:"#ADABAB",
         paddingTop:10,
         paddingLeft:20,
         paddingBottom:50,
-        borderRadius:10,
+        borderRadius:8,
     },
     next:{
-        marginTop:30,
+        marginTop:110,
         marginLeft:20,
         marginRight:20,
         paddingVertical:16,
-        borderColor:"#1B8BF5",
+        borderColor:"#3468C0",
         borderWidth:2,
         borderRadius:10,
-        backgroundColor:"#1B8BF5"
+        backgroundColor:"#3468C0",
+        flexDirection: 'row', // Align children vertically in the center
+        alignItems: 'center',
     },
     textNext:{
         position:"absolute",
-        fontSize:16,
+        fontSize:18,
         color:"#FFFFFF",
         alignSelf:"center",
-        marginTop:16
+        marginTop:16,
+        marginLeft:'40%',
     },
     nextImg:{
-        marginLeft:165,
-        marginTop:3
+        marginLeft:'53%',
+        marginTop:3,
+        height:24,
+        width:24,
     }
 });
