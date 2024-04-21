@@ -15,7 +15,7 @@ export default function Donor1({ navigation, route }) {
       <Text style={styles.title}>Enter your location</Text>
       <View style={styles.inputContainer}>
         <Image
-          source={require('./assets/search.png')}
+          source={require('./assets/search1.png')}
           style={styles.placeholderImage}
         />
         <TextInput
