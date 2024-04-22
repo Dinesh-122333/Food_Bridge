@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
+
+// Function to chunk an array into smaller arrays
+
 const chunkArray = (array, size) => {
     const chunkedArray = [];
     for (let i = 0; i < array.length; i += size) {
@@ -9,8 +12,8 @@ const chunkArray = (array, size) => {
     return chunkedArray;
 }
 
-export default function Enterdishes({ route, navigation }) {
 
+export default function Enterdishes({ route, navigation }) {
     const { location } = route.params;
     const { name } = route.params;
     const { number } = route.params;
@@ -21,8 +24,10 @@ export default function Enterdishes({ route, navigation }) {
 
 
     const handleDishes = () => {
-        navigation.navigate('Confimation', {name: name, location: location, number: number, values: values, dishes: dishes  });
-      }
+        navigation.navigate('Confirmation', { name: name, location: location, number: number, values: values, dishes: dishes });
+    }
+
+
     const handleAddDish = () => {
         if (newDish.trim() !== '') {
             setDishes([...dishes, newDish.trim()]);
@@ -85,6 +90,7 @@ export default function Enterdishes({ route, navigation }) {
                                     </View>
                                 ))}
                             </View>
+
                         ))}</View>
                     </View>
             <View>
@@ -223,14 +229,22 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "500",
     },
-    dishItem: {
+    dishRows: {
+        flexDirection: 'row',
+    },
+    dishColumn: {
+        flex: 1,
+        marginLeft: 10,
+    },
+    dishRow: {
+        marginTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 16
     },
     dishText: {
         fontSize: 16,
         marginRight: 8,
+
     },
     deleteIcon: {
         height: 20,
