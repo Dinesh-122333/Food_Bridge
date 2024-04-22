@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
 export default function Confimation({route, navigation}){
-    const { location, name, number, values, dishes, selectedCategory, selectedMealType } = route.params;
+    const { location, name, number, values, dishes, selectedCategory, selectedMealType , dishesCount} = route.params;
 
     const handleConfirm = () => {
         navigation.navigate('Success', { name: name, location: location, number: number, values: values, dishes: dishes });
@@ -36,7 +36,7 @@ export default function Confimation({route, navigation}){
                         </View>
                         <View style={styles.liteLine}/>
                         <View style={styles.servingDetails}>
-                            <Text style={styles.servingTitle}>{values} Servings</Text>
+                            <Text style={styles.servingTitle}>{values} Servings <Text style = {styles.dishesCount}>({dishesCount})</Text></Text>
                             <Text style={styles.dishesTitle}>Dishes</Text>
                             <View style={styles.dishesContainer}>
                                 
@@ -231,6 +231,9 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:"500",
         marginBottom:10,
+    },
+    dishesCount:{
+        color:"#6B7280"
     },
     dishesContainer: {
         flexDirection: 'row',

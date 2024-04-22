@@ -21,7 +21,7 @@ export default function Enterdishes({ route, navigation }) {
 
 
     const handleDishes = () => {
-        navigation.navigate('Confirmation', { name: name, location: location, number: number, values: values, dishes: dishes });
+        navigation.navigate('Confirmation', { name: name, location: location, number: number, values: values, dishes: dishes , dishesCount: dishes.length});
     }
 
     const handleAddDish = () => {
