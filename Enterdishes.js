@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
-export default function Enterdishes({ route, navigation }) {
+// Function to chunk an array into smaller arrays
+const chunkArray = (array, size) => {
+    const chunkedArray = [];
+    for (let i = 0; i < array.length; i += size) {
+        chunkedArray.push(array.slice(i, i + size));
+    }
+    return chunkedArray;
+}
 
+export default function Enterdishes({ route, navigation }) {
+    const { location } = route.params;
     const { name } = route.params;
+    const { number } = route.params;
+    const { values } = route.params;
+
     const [dishes, setDishes] = useState([]);
     const [newDish, setNewDish] = useState('');
 
     const handleDishes = () => {
-        navigation.navigate('Confimation', {name: name });
-      }
+        navigation.navigate('Confirmation', { name: name, location: location, number: number, values: values, dishes: dishes });
+    }
+
     const handleAddDish = () => {
         if (newDish.trim() !== '') {
             setDishes([...dishes, newDish.trim()]);
@@ -52,23 +65,27 @@ export default function Enterdishes({ route, navigation }) {
 
                 <View style={styles.dishesContainer}>
                     <Text style={styles.dishesHeader}>Your Dishes</Text>
-                    {dishes.map((dish, index) => (
-                        <View key={index} style={styles.dishItem}>
-                            <Text style={styles.dishText}>{dish}</Text>
-                            <TouchableOpacity onPress={() => handleDeleteDish(index)}>
-                                <Image source={require("./assets/delete.png")} style={styles.deleteIcon} />
-                            </TouchableOpacity>
-                        </View>
-                    ))}
-
+                    <View style={styles.dishRows}>
+                        {chunkArray(dishes, 5).map((chunk, chunkIndex) => (
+                            <View key={chunkIndex} style={styles.dishColumn}>
+                                {chunk.map((dish, index) => (
+                                    <View key={index} style={styles.dishRow}>
+                                        <Text style={styles.dishText}>{dish}</Text>
+                                        <TouchableOpacity onPress={() => handleDeleteDish(index + chunkIndex * 5)}>
+                                            <Image source={require("./assets/delete.png")} style={styles.deleteIcon} />
+                                        </TouchableOpacity>
+                                    </View>
+                                ))}
+                            </View>
+                        ))}
+                    </View>
                 </View>
-            <View>
-            <TouchableOpacity style = {styles.next} onPress={handleDishes}>
-
-                    <Text style = {styles.textNext}>Next</Text>
-                    <Image source={require("./assets/next.png")} style={styles.nextImg}/>
-                </TouchableOpacity>
-            </View>
+                <View>
+                    <TouchableOpacity style={styles.next} onPress={handleDishes}>
+                        <Text style={styles.textNext}>Next</Text>
+                        <Image source={require("./assets/next.png")} style={styles.nextImg} />
+                    </TouchableOpacity>
+                </View>
             </SafeAreaView>
         </>
     );
@@ -153,38 +170,45 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "500",
     },
-    dishItem: {
+    dishRows: {
+        flexDirection: 'row',
+    },
+    dishColumn: {
+        flex: 1,
+        marginLeft: 10,
+    },
+    dishRow: {
+        marginTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 16
     },
     dishText: {
         fontSize: 16,
-        marginRight: 8
+        marginRight: 4
     },
     deleteIcon: {
         height: 20,
         width: 20
     },
-    next:{
-        marginTop:100,
-        paddingRight:25,
-        paddingLeft:30,
-        paddingVertical:16,
-        borderColor:"#1B8BF5",
-        borderWidth:2,
-        borderRadius:10,
-        backgroundColor:"#1B8BF5"
+    next: {
+        marginTop: 100,
+        paddingRight: 25,
+        paddingLeft: 30,
+        paddingVertical: 16,
+        borderColor: "#1B8BF5",
+        borderWidth: 2,
+        borderRadius: 10,
+        backgroundColor: "#1B8BF5"
     },
-    textNext:{
-        position:"absolute",
-        fontSize:16,
-        color:"#FFFFFF",
-        alignSelf:"center",
-        marginTop:16
+    textNext: {
+        position: "absolute",
+        fontSize: 16,
+        color: "#FFFFFF",
+        alignSelf: "center",
+        marginTop: 16
     },
-    nextImg:{
-        marginLeft:165,
-        marginTop:3
+    nextImg: {
+        marginLeft: 165,
+        marginTop: 3
     }
 });

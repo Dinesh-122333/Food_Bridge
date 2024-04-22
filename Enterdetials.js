@@ -3,13 +3,18 @@ import { StyleSheet, Text, View, Image, SafeAreaView, TextInput,TouchableOpacity
 
 
 export default function EnterDetails({ route, navigation }) {
+    const { location } = route.params;
     const { name } = route.params;
+    const { number } = route.params;
+
     const [numberofServing, setnumberofServing] = useState('');
     const [selectedServings, setSelectedServings] = useState(null);
 
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     const [selectedMealType, setSelectedMealType] = useState(null);
+
+    
 
     const handleServingPress = (servings) => {
         setnumberofServing(servings);
@@ -25,7 +30,14 @@ export default function EnterDetails({ route, navigation }) {
     };
 
     const handleDetials = () => {
-        navigation.navigate('Enterdishes', {name: name });
+        navigation.navigate('Enterdishes', { 
+            name: name, 
+            location: location, 
+            number: number, 
+            values: numberofServing, 
+            selectedCategory: selectedCategory, // Pass selected category
+            selectedMealType: selectedMealType // Pass selected meal type
+        });
       }
 
     const servingButtonStyle = (servings) => {

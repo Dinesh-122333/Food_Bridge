@@ -3,11 +3,12 @@ import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, Imag
 
 export default function Donor1({ navigation, route }) {
   const { name } = route.params;
+  const {number} = route.params;
   const [locate, setLocate] = useState('');
 
   const handleDonorPress = () => {
     // Handle Donor button press
-    navigation.navigate('Homescreen', { location: locate , name: name });
+    navigation.navigate('Homescreen', { location: locate , name: name , number: number});
   };
 
   return (

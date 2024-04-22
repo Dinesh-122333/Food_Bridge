@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'r
 
 export default function Screen2({ route, navigation }) {
   const { name } = route.params;
+  const{ number } = route.params;
 
   const handleDonorPress = () => {
     // Handle Donor button press
-    navigation.navigate('Donor1', {name: name}); 
+    navigation.navigate('Donor1', {name: name, number:number}); 
   };
   
   const handleReceiverPress = () => {
