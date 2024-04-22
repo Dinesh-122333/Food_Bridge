@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
-
 // Function to chunk an array into smaller arrays
-
 const chunkArray = (array, size) => {
     const chunkedArray = [];
     for (let i = 0; i < array.length; i += size) {
@@ -11,7 +9,6 @@ const chunkArray = (array, size) => {
     }
     return chunkedArray;
 }
-
 
 export default function Enterdishes({ route, navigation }) {
     const { location } = route.params;
@@ -26,7 +23,6 @@ export default function Enterdishes({ route, navigation }) {
     const handleDishes = () => {
         navigation.navigate('Confirmation', { name: name, location: location, number: number, values: values, dishes: dishes });
     }
-
 
     const handleAddDish = () => {
         if (newDish.trim() !== '') {
@@ -83,17 +79,21 @@ export default function Enterdishes({ route, navigation }) {
                             <View key={chunkIndex} style={styles.dishColumn}>
                                 {chunk.map((dish, index) => (
                                     <View key={index} style={styles.dishRow}>
+                                    <View style={styles.dishTextContainer}>
                                         <Text style={styles.dishText}>{dish}</Text>
                                         <TouchableOpacity onPress={() => handleDeleteDish(index + chunkIndex * 5)}>
                                             <Image source={require("./assets/delete.png")} style={styles.deleteIcon} />
                                         </TouchableOpacity>
                                     </View>
+                                </View>
+                                
+                                
                                 ))}
                             </View>
 
                         ))}</View>
                     </View>
-            <View>
+            <View style={styles.nextContainer}>
             <TouchableOpacity style = {styles.next} onPress={handleDishes}>
                     <Text style = {styles.textNext}>Next</Text>
                     <Image source={require("./assets/next.png")} style={styles.nextImg}/>
@@ -167,11 +167,11 @@ const styles = StyleSheet.create({
     },
     primaryDetails: {
         fontSize: 12,
+        color: '#ADABAB',
     },
     dishes: {
         fontSize: 12,
         paddingRight: 20,
-        color: '#ADABAB',
     },
     publish: {
         fontSize: 12,
@@ -237,31 +237,52 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     dishRow: {
-        marginTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: 16,
+    },
+    dishTextContainer: {
+        backgroundColor: '#F4F4FA', // Just for visualization
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        borderRadius: 20,
+        marginRight: 10, // Add some space between dishes
+        flexDirection: 'row', // Align items horizontally
+        alignItems: 'center', // Align items vertically
     },
     dishText: {
-        fontSize: 16,
-        marginRight: 8,
-
+        fontSize: 17,
+        maxWidth: 120, // Set a maximum width for the dish text container
+        overflow: 'hidden',
+        textAlign: 'center',
     },
     deleteIcon: {
         height: 20,
-        width: 20
+        width: 20,
+        marginLeft: 5, // Add space between text and delete icon
     },
-    next:{
-        marginTop:385,
-        marginLeft:20,
-        marginRight:20,
-        paddingVertical:16,
-        borderColor:"#3468C0",
-        borderWidth:2,
-        borderRadius:10,
-        backgroundColor:"#3468C0",
+    
+    nextContainer: {
+        marginTop: 'auto', // Push the container to the bottom
+        alignSelf: 'stretch', // Make sure the container stretches across the screen
+        alignItems: 'center', // Center the button horizontally
+        marginBottom: 25, // Add a margin at the bottom
+    },
+    next: {
+        marginLeft: 20,
+        marginRight: 20,
+        paddingVertical: 16,
+        borderColor: "#3468C0",
+        borderWidth: 2,
+        borderRadius: 10,
+        backgroundColor: "#3468C0",
         flexDirection: 'row', // Align children vertically in the center
         alignItems: 'center',
-    },
+        position: 'absolute', // Position absolutely
+        bottom: 0, // Position at the bottom with a margin
+        left: 0, // Align to the left
+        right: 0, // Align to the right
+    },    
     textNext:{
         position:"absolute",
         fontSize:18,

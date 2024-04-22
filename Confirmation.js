@@ -13,17 +13,19 @@ export default function Confimation({route, navigation}){
         <>
         <SafeAreaView style={styles.container}>
                 <View style={styles.upper}>
-                    <View style={styles.header}>
+                <View style={styles.header}>
                         <Image source={require("./assets/keyboard_backspace.png")} style={styles.back} />
                         <Text style={styles.title}>Enter Details</Text>
+                        <Image source={require("./assets/info.png")} style={styles.info} />
                     </View>
                     <View style={styles.line} />
                     <Image source={require("./assets/progress_bar3.png")} style={styles.progressBar} />
-                    <View style={styles.progressDetails}>
-                        <Text style={styles.primaryDetails}>Primary Details</Text>
-                        <Text style={styles.dishes}>Name of Dishes</Text>
-                        <Text style={styles.publish}>Publish</Text>
-                    </View>
+                <View style={styles.progressDetails}>
+                    <Text style={styles.primaryDetails}>Primary Details</Text>
+                    <Text style={styles.dishes}>Name of Dishes</Text>
+                    <Text style={styles.publish}>Publish</Text>
+                </View>
+                <View style={styles.line2} />
                 </View>
                 <View>
                     <Text style={styles.donationTitle}>Confirm your donation</Text>
@@ -112,7 +114,6 @@ const chunkArray = (array, size) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         marginTop: 20,
         backgroundColor: 'white',
     },
@@ -128,46 +129,74 @@ const styles = StyleSheet.create({
         paddingBottom: 20, // Adjust this value to control the distance from the bottom
     },
     header: {
+        padding: 20,
+        marginTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
     },
     back: {
         marginTop: 8,
-        marginLeft: 5,
+        marginLeft: 15,
         position: "absolute",
+        height:22,
+        width: 22,
     },
     title: {
         fontSize: 20,
         fontWeight: "500",
         marginLeft: 30
     },
+    info: {
+        marginTop: 7,
+        marginLeft: 205,
+        height:20,
+        width: 20,
+    },
     line: {
-        marginTop: 17,
-        borderBottomWidth: 0.5,
-        borderBottomColor: 'grey',
+        padding:0,
+        marginTop: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ADABAB40',
         marginBottom: 10,
     },
     progressBar: {
         alignSelf: "center",
         marginTop: 10,
-        
+        height:22.5,
+        width:280,
     },
     progressDetails: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "space-between",
-        paddingLeft: 25,
-        paddingRight: 45,
+        paddingLeft: 35,
+        paddingRight: 50,
     },
     primaryDetails: {
-        fontSize: 10
+        fontSize: 12,
+        color: '#ADABAB',
     },
     dishes: {
-        fontSize: 10,
-        paddingRight: 20
+        fontSize: 12,
+        paddingRight: 20,
+        color: '#ADABAB',
     },
     publish: {
-        fontSize: 10
+        fontSize: 12,
+    },
+    line2: {
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ADABAB40',
+        marginBottom: 0,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     donateContainer:{
         borderWidth:1,

@@ -8,8 +8,12 @@ export default function Donor1({ navigation, route }) {
 
   const handleDonorPress = () => {
     // Handle Donor button press
+<<<<<<< HEAD
+    navigation.navigate('Homescreen', { location: locate , name: name , number: number});
+=======
     navigation.navigate('Homescreen', { location: locate , name: name , number: number });
 
+>>>>>>> 206ab64b51b736bd022dc663268d877e811568f9
   };
 
   return (

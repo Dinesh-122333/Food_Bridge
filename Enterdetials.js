@@ -28,7 +28,7 @@ export default function EnterDetails({ route, navigation }) {
         setSelectedmealType(mealType);
     };
 
-    const handleDetials = () => {
+    const handleDetails = () => {
         navigation.navigate('Enterdishes', { 
             name: name, 
             location: location, 
@@ -260,8 +260,8 @@ export default function EnterDetails({ route, navigation }) {
             </Text>
             <TextInput placeholder='type here...' style={styles.additionalDescription}/>
             </View>
-            <View>
-            <TouchableOpacity style = {styles.next} onPress={handleDetials}>
+            <View style={styles.nextContainer}>
+            <TouchableOpacity style = {styles.next} onPress={handleDetails}>
                     <Text style = {styles.textNext}>Next</Text>
                     <Image source={require("./assets/next.png")} style={styles.nextImg}/>
             </TouchableOpacity>
@@ -497,18 +497,27 @@ const styles = StyleSheet.create({
         paddingBottom:50,
         borderRadius:8,
     },
-    next:{
-        marginTop:110,
-        marginLeft:20,
-        marginRight:20,
-        paddingVertical:16,
-        borderColor:"#3468C0",
-        borderWidth:2,
-        borderRadius:10,
-        backgroundColor:"#3468C0",
+    nextContainer: {
+        marginTop: 'auto', // Push the container to the bottom
+        alignSelf: 'stretch', // Make sure the container stretches across the screen
+        alignItems: 'center', // Center the button horizontally
+        marginBottom: 25, // Add a margin at the bottom
+    },
+    next: {
+        marginLeft: 20,
+        marginRight: 20,
+        paddingVertical: 16,
+        borderColor: "#3468C0",
+        borderWidth: 2,
+        borderRadius: 10,
+        backgroundColor: "#3468C0",
         flexDirection: 'row', // Align children vertically in the center
         alignItems: 'center',
-    },
+        position: 'absolute', // Position absolutely
+        bottom: 0, // Position at the bottom with a margin
+        left: 0, // Align to the left
+        right: 0, // Align to the right
+    },    
     textNext:{
         position:"absolute",
         fontSize:18,
