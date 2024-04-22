@@ -30,24 +30,32 @@ export default function Enterdishes({ route, navigation }) {
                     <View style={styles.header}>
                         <Image source={require("./assets/keyboard_backspace.png")} style={styles.back} />
                         <Text style={styles.title}>Enter Details</Text>
+                        <Image source={require("./assets/info.png")} style={styles.info} />
                     </View>
                     <View style={styles.line} />
                     <Image source={require("./assets/progress_bar2.png")} style={styles.progressBar} />
-                    <View style={styles.progressDetails}>
-                        <Text style={styles.primaryDetails}>Primary Details</Text>
-                        <Text style={styles.dishes}>Name of Dishes</Text>
-                        <Text style={styles.publish}>Publish</Text>
-                    </View>
+                <View style={styles.progressDetails}>
+                    <Text style={styles.primaryDetails}>Primary Details</Text>
+                    <Text style={styles.dishes}>Name of Dishes</Text>
+                    <Text style={styles.publish}>Publish</Text>
                 </View>
-                <View style={styles.textbox}>
-                    <Image source={require("./assets/search1.png")} style={styles.searchImg} />
-                    <TextInput
-                        placeholder='Try Idly'
-                        style={styles.searchInput}
+                <View style={styles.line2} />
+                </View>
+                <View style={styles.inputwhole}>
+                <View style={styles.inputContainer}>
+                    <Image
+                        source={require('./assets/search1.png')}
+                        style={styles.placeholderImage}
+                    />
+                   <TextInput
+                        placeholder="Try 'Idly'"
+                        style={styles.input}
                         value={newDish}
                         onChangeText={setNewDish}
                         onSubmitEditing={handleAddDish}
+                        placeholderTextColor="#969698"
                     />
+                </View>
                 </View>
 
                 <View style={styles.dishesContainer}>
@@ -64,10 +72,9 @@ export default function Enterdishes({ route, navigation }) {
                 </View>
             <View>
             <TouchableOpacity style = {styles.next} onPress={handleDishes}>
-
                     <Text style = {styles.textNext}>Next</Text>
                     <Image source={require("./assets/next.png")} style={styles.nextImg}/>
-                </TouchableOpacity>
+            </TouchableOpacity>
             </View>
             </SafeAreaView>
         </>
@@ -77,7 +84,6 @@ export default function Enterdishes({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         marginTop: 20,
         backgroundColor: 'white',
     },
@@ -93,62 +99,108 @@ const styles = StyleSheet.create({
         paddingBottom: 20, // Adjust this value to control the distance from the bottom
     },
     header: {
+        padding: 20,
+        marginTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
     },
     back: {
         marginTop: 8,
-        marginLeft: 5,
+        marginLeft: 15,
         position: "absolute",
-       
+        height:22,
+        width: 22,
     },
     title: {
         fontSize: 20,
         fontWeight: "500",
         marginLeft: 30
     },
+    info: {
+        marginTop: 7,
+        marginLeft: 205,
+        height:20,
+        width: 20,
+    },
     line: {
-        marginTop: 17,
-        borderBottomWidth: 0.5,
-        borderBottomColor: 'grey',
+        padding:0,
+        marginTop: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ADABAB40',
         marginBottom: 10,
     },
     progressBar: {
         alignSelf: "center",
-        marginTop: 10
+        marginTop: 10,
+        height:22.5,
+        width:280,
     },
     progressDetails: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "space-between",
-        paddingLeft: 25,
-        paddingRight: 45,
+        paddingLeft: 35,
+        paddingRight: 50,
     },
     primaryDetails: {
-        fontSize: 10
+        fontSize: 12,
     },
     dishes: {
-        fontSize: 10,
-        paddingRight: 20
+        fontSize: 12,
+        paddingRight: 20,
+        color: '#ADABAB',
     },
     publish: {
-        fontSize: 10
+        fontSize: 12,
+        color: '#ADABAB',
     },
-    textbox: {
-        marginTop: 24,
-        padding: 12,
-        borderWidth: 1,
-        borderColor: "grey",
-        borderRadius: 10,
+    line2: {
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ADABAB40',
+        marginBottom: 0,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    inputwhole: {
+        paddingLeft: 20,
+        paddingRight: 20,
+      },
+    inputContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
-    },
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ADABAB',
+        borderRadius: 12,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+      },
+      placeholderImage: {
+        width: 20,
+        height: 20,
+        marginRight: 0,
+      },
+      input: {
+        flex: 1,
+        height: 40,
+        color: '#969698',
+        paddingHorizontal: 10,
+        fontSize: 16,
+      },
     searchInput: {
         marginLeft: 8,
         flex: 1
     },
     dishesContainer: {
-        marginTop: 36,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginTop: 35,
     },
     dishesHeader: {
         fontSize: 18,
@@ -161,31 +213,36 @@ const styles = StyleSheet.create({
     },
     dishText: {
         fontSize: 16,
-        marginRight: 8
+        marginRight: 8,
     },
     deleteIcon: {
         height: 20,
         width: 20
     },
     next:{
-        marginTop:100,
-        paddingRight:25,
-        paddingLeft:30,
+        marginTop:385,
+        marginLeft:20,
+        marginRight:20,
         paddingVertical:16,
-        borderColor:"#1B8BF5",
+        borderColor:"#3468C0",
         borderWidth:2,
         borderRadius:10,
-        backgroundColor:"#1B8BF5"
+        backgroundColor:"#3468C0",
+        flexDirection: 'row', // Align children vertically in the center
+        alignItems: 'center',
     },
     textNext:{
         position:"absolute",
-        fontSize:16,
+        fontSize:18,
         color:"#FFFFFF",
         alignSelf:"center",
-        marginTop:16
+        marginTop:16,
+        marginLeft:'40%',
     },
     nextImg:{
-        marginLeft:165,
-        marginTop:3
+        marginLeft:'53%',
+        marginTop:3,
+        height:24,
+        width:24,
     }
 });

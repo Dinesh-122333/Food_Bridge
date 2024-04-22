@@ -251,7 +251,7 @@ export default function EnterDetails({ route, navigation }) {
             <TouchableOpacity style = {styles.next} onPress={handleDetials}>
                     <Text style = {styles.textNext}>Next</Text>
                     <Image source={require("./assets/next.png")} style={styles.nextImg}/>
-                </TouchableOpacity>
+            </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
