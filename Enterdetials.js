@@ -13,6 +13,8 @@ export default function EnterDetails({ route, navigation }) {
 
     const [selectedmealType, setSelectedmealType] = useState(null);
 
+    
+
     const handleServingPress = (servings) => {
         setnumberofServing(servings);
         setSelectedServings(servings);
@@ -34,6 +36,7 @@ export default function EnterDetails({ route, navigation }) {
             values: numberofServing, 
             selectedCategory: selectedCategory, // Pass selected category
             selectedmealType: selectedmealType // Pass selected meal type
+
         });
       }
 

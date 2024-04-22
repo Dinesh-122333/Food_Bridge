@@ -90,6 +90,7 @@ export default function Enterdishes({ route, navigation }) {
                                 
                                 ))}
                             </View>
+
                         ))}</View>
                     </View>
             <View style={styles.nextContainer}>
