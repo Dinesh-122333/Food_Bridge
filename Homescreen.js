@@ -7,7 +7,7 @@ export default function HomeScreen({ route, navigation }) {
     const { number } = route.params;
 
     const handlePress = () => {
-      navigation.navigate('Enterdetials', {name: name, location: location, number: number});
+      navigation.navigate('Enterdetials', {name: name, location: location, number: number });
     }
   
     // Split the address string at the comma and take the first part
