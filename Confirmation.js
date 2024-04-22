@@ -4,6 +4,9 @@ import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacit
 export default function Confimation({route, navigation}){
     const { location, name, number, values, dishes, selectedCategory, selectedMealType } = route.params;
 
+    const handleConfirm = () => {
+        navigation.navigate('Success', { name: name, location: location, number: number, values: values, dishes: dishes });
+    }
     
 
     return(
@@ -87,6 +90,11 @@ export default function Confimation({route, navigation}){
                         </View>
 
                   </View>
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.next} onPress={handleConfirm}>
+                        <Text style={styles.textNext}>Publish</Text>
+                    </TouchableOpacity>
                 </View>
             </SafeAreaView>
         </>
@@ -205,5 +213,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    next: {
+        marginTop: 260,
+        paddingRight: 25,
+        paddingLeft: 30,
+        paddingVertical: 30,
+        borderColor: "#1B8BF5",
+        borderWidth: 2,
+        borderRadius: 10,
+        backgroundColor: "#1B8BF5"
+    },
+    textNext: {
+        position: "absolute",
+        fontSize: 16,
+        color: "#FFFFFF",
+        alignSelf: "center",
+        marginTop: 16
+    },
+    nextImg: {
+        marginLeft: 165,
+        marginTop: 3
+    }
     
 });
