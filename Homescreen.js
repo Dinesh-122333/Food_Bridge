@@ -4,9 +4,10 @@ import { StyleSheet, Text, View, Image, SafeAreaView , TouchableOpacity} from 'r
 export default function HomeScreen({ route, navigation }) {
     const { location } = route.params;
     const { name } = route.params;
+    const { number } = route.params;
 
     const handlePress = () => {
-      navigation.navigate('Enterdetials', {name: name });
+      navigation.navigate('Enterdetials', {name: name, location: location, number: number });
     }
   
     // Split the address string at the comma and take the first part

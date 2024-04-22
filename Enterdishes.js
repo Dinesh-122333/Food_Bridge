@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
+const chunkArray = (array, size) => {
+    const chunkedArray = [];
+    for (let i = 0; i < array.length; i += size) {
+        chunkedArray.push(array.slice(i, i + size));
+    }
+    return chunkedArray;
+}
+
 export default function Enterdishes({ route, navigation }) {
 
+    const { location } = route.params;
     const { name } = route.params;
+    const { number } = route.params;
+    const { values } = route.params;
+
     const [dishes, setDishes] = useState([]);
     const [newDish, setNewDish] = useState('');
 
+
     const handleDishes = () => {
-        navigation.navigate('Confimation', {name: name });
+        navigation.navigate('Confimation', {name: name, location: location, number: number, values: values, dishes: dishes  });
       }
     const handleAddDish = () => {
         if (newDish.trim() !== '') {
@@ -60,16 +73,20 @@ export default function Enterdishes({ route, navigation }) {
 
                 <View style={styles.dishesContainer}>
                     <Text style={styles.dishesHeader}>Your Dishes</Text>
-                    {dishes.map((dish, index) => (
-                        <View key={index} style={styles.dishItem}>
-                            <Text style={styles.dishText}>{dish}</Text>
-                            <TouchableOpacity onPress={() => handleDeleteDish(index)}>
-                                <Image source={require("./assets/delete.png")} style={styles.deleteIcon} />
-                            </TouchableOpacity>
-                        </View>
-                    ))}
-
-                </View>
+                    <View style={styles.dishRows}>
+                        {chunkArray(dishes, 5).map((chunk, chunkIndex) => (
+                            <View key={chunkIndex} style={styles.dishColumn}>
+                                {chunk.map((dish, index) => (
+                                    <View key={index} style={styles.dishRow}>
+                                        <Text style={styles.dishText}>{dish}</Text>
+                                        <TouchableOpacity onPress={() => handleDeleteDish(index + chunkIndex * 5)}>
+                                            <Image source={require("./assets/delete.png")} style={styles.deleteIcon} />
+                                        </TouchableOpacity>
+                                    </View>
+                                ))}
+                            </View>
+                        ))}</View>
+                    </View>
             <View>
             <TouchableOpacity style = {styles.next} onPress={handleDishes}>
                     <Text style = {styles.textNext}>Next</Text>
