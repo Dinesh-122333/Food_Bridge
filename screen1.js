@@ -12,7 +12,7 @@ export default function Screen1({ navigation }) {
 
     if (name && mobileNumber && email) {
       // Navigate to the next screen
-      navigation.navigate('Screen2', { name: name });
+      navigation.navigate('Screen2', { name: name, number:mobileNumber});
       
     } else {
       // Show alert if any input field is empty
