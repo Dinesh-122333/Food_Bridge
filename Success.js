@@ -5,7 +5,7 @@ export default function Success({route, navigation}){
     const { location, name, number, values, dishes, selectedCategory, selectedMealType } = route.params;
 
     const handleDone = () => {
-        navigation.navigate('Success', { name: name, location: location, number: number, values: values, dishes: dishes });
+        navigation.navigate('Update', { name: name, location: location, number: number, values: values, dishes: dishes });
     };
 
     return (

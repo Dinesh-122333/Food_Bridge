@@ -9,6 +9,7 @@ import Enterdetial from './Enterdetials';
 import Enterdishes from './Enterdishes';
 import Confimation from './Confirmation';
 import Success from './Success';
+import Update from './Update';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
   <Stack.Screen name='Enterdishes' component={Enterdishes} options={{headerShown: false}}/>
   <Stack.Screen name='Confirmation' component={Confimation} options={{headerShown: false}}/>
   <Stack.Screen name='Success' component={Success} options={{headerShown: false}}/>
+  <Stack.Screen name='Update' component={Update} options={{headerShown: false}}/>
   </Stack.Navigator>
   </NavigationContainer>
   );
