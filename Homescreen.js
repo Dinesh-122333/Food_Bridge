@@ -95,8 +95,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
       },
       userfullLocation:{
+        paddingLeft:40,
         color:"#707072",
-        marginTop:50
+        marginTop:60
       },
       usericon:{
         width:24,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
         position:"absolute"
       },
       line: {
-        marginTop:30,
+        marginTop:20,
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(0, 0, 0, 0.20)',
         marginBottom: 20,

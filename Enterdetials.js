@@ -13,7 +13,6 @@ export default function EnterDetails({ route, navigation }) {
 
     const [selectedmealType, setSelectedmealType] = useState(null);
 
-    
 
     const handleServingPress = (servings) => {
         setnumberofServing(servings);

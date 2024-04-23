@@ -15,13 +15,23 @@ export default function Enterdishes({ route, navigation }) {
     const { name } = route.params;
     const { number } = route.params;
     const { values } = route.params;
+    const { selectedCategory } = route.params;
+    const { selectedmealType } = route.params;
 
     const [dishes, setDishes] = useState([]);
     const [newDish, setNewDish] = useState('');
 
 
     const handleDishes = () => {
-        navigation.navigate('Confirmation', { name: name, location: location, number: number, values: values, dishes: dishes , dishesCount: dishes.length});
+        navigation.navigate('Confirmation', { 
+             name: name,
+             location: location, 
+             number: number, 
+             values: values, 
+             dishes: dishes , 
+             selectedCategory: selectedCategory,
+             selectedmealType: selectedmealType
+            });
     }
 
     const handleAddDish = () => {

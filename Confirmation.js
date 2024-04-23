@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 
 export default function Confimation({route, navigation}){
-    const { location, name, number, values, dishes, selectedCategory, selectedMealType , dishesCount} = route.params;
+    const { location, name, number, values, dishes, selectedCategory, selectedmealType } = route.params;
 
     const handleConfirm = () => {
         navigation.navigate('Success', { name: name, location: location, number: number, values: values, dishes: dishes });
@@ -27,77 +27,116 @@ export default function Confimation({route, navigation}){
                 </View>
                 <View style={styles.line2} />
                 </View>
-                <View>
+                <View style={styles.donationContainer}>
                     <Text style={styles.donationTitle}>Confirm your donation</Text>
                     <View style={styles.donateContainer}>
                         <View style={styles.mainDetails}>
-                            <Text><Image source={require("./assets/person.png")}/>{name} | {number}</Text>
-                            <Text><Image source={require("./assets/location.png")}/>{location}</Text>
+                        <View style={styles.rowContainer}>
+                            <View style={styles.imageContainer}>
+                                <Image source={require("./assets/person.png")} style={styles.person} />
+                            </View>
+                            <View style={styles.textContainer}>
+                                <Text>{name} | {number}</Text>
+                            </View>
+                            <View style={styles.editContainer}>
+                                <TouchableOpacity >
+                                    <Image source={require("./assets/edit.png")} style={styles.editIcon} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
+
+                        <View style={styles.rowContainer}>
+                           <View style={styles.imageContainer}>
+                               <Image source={require("./assets/location.png")} style={styles.location} />
+                            </View>
+                        <View style={styles.textContainer}>
+                           <Text>{location}</Text>
+                    </View>
+                </View>
+                </View> 
                         <View style={styles.liteLine}/>
                         <View style={styles.servingDetails}>
-                            <Text style={styles.servingTitle}>{values} Servings <Text style = {styles.dishesCount}>({dishesCount})</Text></Text>
-                            <Text style={styles.dishesTitle}>Dishes</Text>
+                        <View style={styles.rowContainer1}>
+                            <Text style={styles.servingTitle}>{values} Servings</Text>
+                              <TouchableOpacity >
+                               <Image source={require("./assets/edit.png")} style={styles.editIcon1} />
+                              </TouchableOpacity>
+                        </View>
+                        <View style={styles.rowContainer}>
+    {/* Render the food category icon */}
+    {/* Render the category icon */}
+{selectedCategory && (
+    <View style={styles.iconContainer}>
+        <Image
+            source={
+                selectedCategory === 'Veg'
+                    ? require('./assets/vegbutton.png')
+                    : selectedCategory === 'Non-Veg'
+                    ? require('./assets/Nonvegbutton.png')
+                    : selectedCategory === 'Both'
+                    ? require('./assets/bothbutton.png')
+                    : null // Add additional conditions as needed
+            }
+            style={[
+                styles.icon,
+                selectedCategory === 'Veg' && styles.vegIcon,
+                selectedCategory === 'Non-Veg' && styles.nonVegIcon,
+                selectedCategory === 'Both' && styles.bothIcon,
+            ]}
+        />
+    </View>
+)}
+
+{/* Render the meal type icon */}
+{selectedmealType && (
+    <View style={styles.iconContainer}>
+        <Image
+            source={
+                selectedmealType === 'Breakfast'
+                    ? require('./assets/breakfastbutton.png')
+                    : selectedmealType === 'Lunch'
+                    ? require('./assets/lunchbutton.png')
+                    : selectedmealType === 'Dinner'
+                    ? require('./assets/dinnerbutton.png')
+                    : null // Add additional conditions as needed
+            }
+            style={[
+                styles.icon,
+                selectedmealType === 'Breakfast' && styles.breakfastIcon,
+                selectedmealType === 'Lunch' && styles.lunchIcon,
+                selectedmealType === 'Dinner' && styles.dinnerIcon,
+            ]}
+        />
+    </View>
+)}
+
+</View>
+
+<Text style={styles.dishesTitle}>
+    Dishes  
+    <Text style={styles.dishCount}> ({dishes.length})</Text>
+</Text>
                             <View style={styles.dishesContainer}>
                                 
                                 {chunkArray(dishes, 5).map((column, colIndex) => (
                                     <View key={colIndex} style={styles.column}>
                                         {column.map((dish, index) => (
                                             <View key={index} style={styles.dishRow}>
-                                                <Image source={require("./assets/arrowright.png")} />
-                                                <Text>{dish}</Text>
+                                                <Image source={require("./assets/arrowright.png")} style={styles.arrow} />
+                                                <Text style={styles.dishname}>{dish}</Text>
                                             </View>
                                         ))}
                                     </View>
                                 ))}
                             </View>
                         </View>
-                        <View>
-                            <Text>Food Category:</Text>
-                            {selectedCategory && (
-                                <View style={styles.categoryRow}>
-                                    <Image
-                                        source={
-                                            selectedCategory === 'Veg'
-                                                ? require('./assets/vegbutton.png')
-                                                : selectedCategory === 'Non-Veg'
-                                                ? require('./assets/Nonvegbutton.png')
-                                                : selectedCategory === 'Both'
-                                                ? require('./assets/bothbutton.png')
-                                                : null // Add additional conditions as needed
-                                        }
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.selectedCategory}>{selectedCategory}</Text>
-                                </View>
-                            )}
-                            <Text>Meal Type:</Text>
-                            {selectedMealType && (
-                                <View style={styles.categoryRow}>
-                                    <Image
-                                        source={
-                                            selectedMealType === 'Breakfast'
-                                                ? require('./assets/breakfastbutton.png')
-                                                : selectedMealType === 'Lunch'
-                                                ? require('./assets/lunchbutton.png')
-                                                : selectedMealType === 'Dinner'
-                                                ? require('./assets/dinnerbutton.png')
-                                                : null // Add additional conditions as needed
-                                        }
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.selectedMealType}>{selectedMealType}</Text>
-                                </View>
-                            )}
-                        </View>
-
                   </View>
                 </View>
-                <View>
-                    <TouchableOpacity style={styles.next} onPress={handleConfirm}>
-                        <Text style={styles.textNext}>Publish</Text>
-                    </TouchableOpacity>
-                </View>
+                <View style={styles.nextContainer}>
+            <TouchableOpacity style = {styles.next} onPress={handleConfirm}>
+                    <Text style = {styles.textNext}>Publish</Text>
+            </TouchableOpacity>
+            </View>
             </SafeAreaView>
         </>
     )
@@ -198,22 +237,71 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
+    donationContainer:{
+        paddingLeft:20,
+        paddingRight:20,
+    },
     donateContainer:{
+        borderColor:'#D1D5DB',
         borderWidth:1,
         borderRadius:10, 
         paddingBottom:30,
-        paddingTop:20
+        paddingTop:10
     },
     donationTitle:{
         fontSize:18,
         fontWeight:"500",
         marginBottom:10,
     },
+    rowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    imageContainer: {
+        marginRight: 10, // Adjust the spacing between image and text content
+    },
+    textContainer: {
+        flex: 1, // Allow the text container to expand
+        marginBottom: 10,
+        marginRight: 15,
+    },
+    location: {
+        height: 25,
+        width: 25,
+        marginBottom: 10,
+        // Add any additional styling for the location image here
+    },    
+    person: {
+        height: 25,
+        width: 25,
+        marginBottom: 10,
+        // Add any additional styling for the person image here
+    },
+    editContainer:{
+        marginRight: 10,
+    },
+    editIcon:{
+        height: 20,
+        width: 20,
+        marginBottom: 10,
+    },
+    rowContainer1: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between', // Add this to space the text and edit icon
+    },
+    
+    editIcon1:{
+        height: 20,
+        width: 20,
+        marginBottom: 10,
+        marginRight: 10,
+    },
     liteLine:{
-        marginTop: 30,
+        marginTop: 10,
         marginBottom: 20,
         borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0, 0, 0, 0.20)',
+        borderBottomColor: '#D1D5DB',
         borderStyle: 'dotted',
     },
     mainDetails:{
@@ -227,13 +315,41 @@ const styles = StyleSheet.create({
         fontWeight:"500",
         marginBottom:10,
     },
+    vegIcon:{
+        height:29.5,
+        width:76,
+    },
+    nonVegIcon:{
+        height:29.5,
+        width:106.5,
+    },
+    bothIcon:{
+        height:29.5,
+        width:80,
+    },
+    breakfastIcon:{
+        height:30,
+        width:113.5,
+        marginLeft:20,
+    },
+    lunchIcon:{
+        height:30,
+        width:91,
+        marginLeft:20,
+    },
+    dinnerIcon:{
+        height:30,
+        width:94,
+        marginLeft:20,
+    },
     dishesTitle:{
+        marginTop: 10,
         fontSize:18,
         fontWeight:"500",
         marginBottom:10,
     },
-    dishesCount:{
-        color:"#6B7280"
+    dishCount:{
+        color:'#6B7280',
     },
     dishesContainer: {
         flexDirection: 'row',
@@ -245,26 +361,44 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    arrow:{
+        height: 20,
+        width: 20,
+        marginBottom:5,
+    },
+    dishname: {
+        fontSize:16,
+        marginBottom:5,
+        paddingLeft:5,
+    },
+    nextContainer: {
+        marginTop: 'auto', // Push the container to the bottom
+        alignSelf: 'stretch', // Make sure the container stretches across the screen
+        alignItems: 'center', // Center the button horizontally
+        marginBottom: 25, // Add a margin at the bottom
+    },
     next: {
-        marginTop: 260,
-        paddingRight: 25,
-        paddingLeft: 30,
-        paddingVertical: 30,
-        borderColor: "#1B8BF5",
+        marginLeft: 20,
+        marginRight: 20,
+        paddingVertical: 28,
+        borderColor: "#3468C0",
         borderWidth: 2,
         borderRadius: 10,
-        backgroundColor: "#1B8BF5"
+        backgroundColor: "#3468C0",
+        flexDirection: 'row', // Align children vertically in the center
+        alignItems: 'center',
+        position: 'absolute', // Position absolutely
+        bottom: 0, // Position at the bottom with a margin
+        left: 0, // Align to the left
+        right: 0, // Align to the right
+    },    
+    textNext:{
+        position:"absolute",
+        fontSize:18,
+        color:"#FFFFFF",
+        alignSelf:"center",
+        marginTop:16,
+        marginLeft:'40%',
     },
-    textNext: {
-        position: "absolute",
-        fontSize: 16,
-        color: "#FFFFFF",
-        alignSelf: "center",
-        marginTop: 16
-    },
-    nextImg: {
-        marginLeft: 165,
-        marginTop: 3
-    }
     
 });
