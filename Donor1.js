@@ -1,14 +1,43 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, Image } from 'react-native';
+import * as Location from 'expo-location';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default function Donor1({ navigation, route }) {
-  const { name } = route.params;
-  const {number} = route.params;
+  const { name, number } = route.params;
   const [locate, setLocate] = useState('');
 
-  const handleDonorPress = () => {
-    // Handle Donor button press
-    navigation.navigate('Homescreen', { location: locate , name: name , number: number});
+  const getCurrentLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission not granted', 'Failed to get location permissions');
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    return location.coords;
+  };
+
+  const getAddressFromCoords = async (latitude, longitude) => {
+    const apiKey = 'AIzaSyCWmtbqBAtrsdrpGnv86gF9qU7CZokuHqI';  // Make sure you replace this with your actual API key
+    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`);
+    const responseJson = await response.json();
+    if (responseJson.results.length > 0) {
+      return responseJson.results[0].formatted_address;
+    } else {
+      throw new Error('No address found for this location.');
+    }
+  };
+
+  const handleDonorPress = async () => {
+    try {
+      const coords = await getCurrentLocation();
+      const address = await getAddressFromCoords(coords.latitude, coords.longitude);
+      setLocate(address); // Update the text input with the fetched address
+      navigation.navigate('Homescreen', { location: address, name, number });
+    } catch (error) {
+      Alert.alert('Error', 'Unable to fetch location: ' + error.message);
+    }
   };
 
   return (
@@ -19,12 +48,24 @@ export default function Donor1({ navigation, route }) {
           source={require('./assets/search1.png')}
           style={styles.placeholderImage}
         />
-        <TextInput
-          placeholder="Try GKM palace, etc"
-          style={styles.input}
-          value={locate}
-          onChangeText={(text) => setLocate(text)}
-          placeholderTextColor="#969698"
+        <GooglePlacesAutocomplete
+          placeholder='Try GKM palace, etc'
+          fetchDetails={true}
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+            navigation.navigate('Homescreen', { location: details.formatted_address, name, number });
+          }}
+          query={{
+            key: 'AIzaSyCWmtbqBAtrsdrpGnv86gF9qU7CZokuHqI',
+            language: 'en',
+            types: 'geocode', // Can be 'establishment', 'addresses', 'geocode', 'regions', and more
+          }}
+          styles={{
+            textInput: styles.input,
+          }}
+          nearbyPlacesAPI='GooglePlacesSearch'
+          debounce={200} // Add a delay as user types
         />
       </View>
       <View style={styles.currentContainer}>
