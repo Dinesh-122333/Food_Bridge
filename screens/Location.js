@@ -44,7 +44,7 @@ export default function Donor1({ navigation, route }) {
       <Text style={styles.title}>Enter your location</Text>
       <View style={styles.inputContainer}>
         <Image
-          source={require('./assets/search1.png')}
+          source={require('../assets/search1.png')}
           style={styles.placeholderImage}
         />
         <GooglePlacesAutocomplete
@@ -68,7 +68,7 @@ export default function Donor1({ navigation, route }) {
         />
       </View>
       <View style={styles.currentContainer}>
-        <Image source={require("./assets/arrow.png")} style={styles.locationImage}/>
+        <Image source={require("../assets/arrow.png")} style={styles.locationImage}/>
         <TouchableOpacity onPress={handleDonorPress}>
           <Text style={styles.userLocation}>Use my current location</Text>
         </TouchableOpacity>

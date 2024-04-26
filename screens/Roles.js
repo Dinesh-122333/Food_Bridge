@@ -30,7 +30,7 @@ export default function Screen2({ route, navigation }) {
       </View>
       <View style={styles.lines} />
       <Image 
-         source={require('./assets/images/screen2.png')}
+         source={require('../assets/images/screen2.png')}
         style={styles.img}
       />
     </SafeAreaView>

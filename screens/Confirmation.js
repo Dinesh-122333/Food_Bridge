@@ -66,12 +66,12 @@ export default function Confimation({route, navigation}){
         <SafeAreaView style={styles.container}>
                 <View style={styles.upper}>
                 <View style={styles.header}>
-                        <Image source={require("./assets/keyboard_backspace.png")} style={styles.back} />
+                        <Image source={require("../assets/keyboard_backspace.png")} style={styles.back} />
                         <Text style={styles.title}>Enter Details</Text>
-                        <Image source={require("./assets/info.png")} style={styles.info} />
+                        <Image source={require("../assets/info.png")} style={styles.info} />
                     </View>
                     <View style={styles.line} />
-                    <Image source={require("./assets/progress_bar3.png")} style={styles.progressBar} />
+                    <Image source={require("../assets/progress_bar3.png")} style={styles.progressBar} />
                 <View style={styles.progressDetails}>
                     <Text style={styles.primaryDetails}>Primary Details</Text>
                     <Text style={styles.dishes}>Name of Dishes</Text>
@@ -85,21 +85,21 @@ export default function Confimation({route, navigation}){
                         <View style={styles.mainDetails}>
                         <View style={styles.rowContainer}>
                             <View style={styles.imageContainer}>
-                                <Image source={require("./assets/person.png")} style={styles.person} />
+                                <Image source={require("../assets/person.png")} style={styles.person} />
                             </View>
                             <View style={styles.textContainer}>
                                 <Text>{name} | {number}</Text>
                             </View>
                             <View style={styles.editContainer}>
                                 <TouchableOpacity >
-                                    <Image source={require("./assets/edit.png")} style={styles.editIcon} />
+                                    <Image source={require("../assets/edit.png")} style={styles.editIcon} />
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.rowContainer}>
                            <View style={styles.imageContainer}>
-                               <Image source={require("./assets/location.png")} style={styles.location} />
+                               <Image source={require("../assets/location.png")} style={styles.location} />
                             </View>
                         <View style={styles.textContainer}>
                            <Text>{location}</Text>
@@ -111,7 +111,7 @@ export default function Confimation({route, navigation}){
                         <View style={styles.rowContainer1}>
                             <Text style={styles.servingTitle}>{values} Servings</Text>
                               <TouchableOpacity >
-                               <Image source={require("./assets/edit.png")} style={styles.editIcon1} />
+                               <Image source={require("../assets/edit.png")} style={styles.editIcon1} />
                               </TouchableOpacity>
                         </View>
                         <View style={styles.rowContainer}>
@@ -122,11 +122,11 @@ export default function Confimation({route, navigation}){
         <Image
             source={
                 selectedCategory === 'Veg'
-                    ? require('./assets/vegbutton.png')
+                    ? require('../assets/vegbutton.png')
                     : selectedCategory === 'Non-Veg'
-                    ? require('./assets/Nonvegbutton.png')
+                    ? require('../assets/Nonvegbutton.png')
                     : selectedCategory === 'Both'
-                    ? require('./assets/bothbutton.png')
+                    ? require('../assets/bothbutton.png')
                     : null // Add additional conditions as needed
             }
             style={[
@@ -145,11 +145,11 @@ export default function Confimation({route, navigation}){
         <Image
             source={
                 selectedmealType === 'Breakfast'
-                    ? require('./assets/breakfastbutton.png')
+                    ? require('../assets/breakfastbutton.png')
                     : selectedmealType === 'Lunch'
-                    ? require('./assets/lunchbutton.png')
+                    ? require('../assets/lunchbutton.png')
                     : selectedmealType === 'Dinner'
-                    ? require('./assets/dinnerbutton.png')
+                    ? require('../assets/dinnerbutton.png')
                     : null // Add additional conditions as needed
             }
             style={[
@@ -174,7 +174,7 @@ export default function Confimation({route, navigation}){
                                     <View key={colIndex} style={styles.column}>
                                         {column.map((dish, index) => (
                                             <View key={index} style={styles.dishRow}>
-                                                <Image source={require("./assets/arrowright.png")} style={styles.arrow} />
+                                                <Image source={require("../assets/arrowright.png")} style={styles.arrow} />
                                                 <Text style={styles.dishname}>{dish}</Text>
                                             </View>
                                         ))}

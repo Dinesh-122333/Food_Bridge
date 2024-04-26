@@ -52,12 +52,12 @@ export default function Enterdishes({ route, navigation }) {
             <SafeAreaView style={styles.container}>
                 <View style={styles.upper}>
                     <View style={styles.header}>
-                        <Image source={require("./assets/keyboard_backspace.png")} style={styles.back} />
+                        <Image source={require("../assets/keyboard_backspace.png")} style={styles.back} />
                         <Text style={styles.title}>Enter Details</Text>
-                        <Image source={require("./assets/info.png")} style={styles.info} />
+                        <Image source={require("../assets/info.png")} style={styles.info} />
                     </View>
                     <View style={styles.line} />
-                    <Image source={require("./assets/progress_bar2.png")} style={styles.progressBar} />
+                    <Image source={require("../assets/progress_bar2.png")} style={styles.progressBar} />
                 <View style={styles.progressDetails}>
                     <Text style={styles.primaryDetails}>Primary Details</Text>
                     <Text style={styles.dishes}>Name of Dishes</Text>
@@ -68,7 +68,7 @@ export default function Enterdishes({ route, navigation }) {
                 <View style={styles.inputwhole}>
                 <View style={styles.inputContainer}>
                     <Image
-                        source={require('./assets/search1.png')}
+                        source={require('../assets/search1.png')}
                         style={styles.placeholderImage}
                     />
                    <TextInput
@@ -92,7 +92,7 @@ export default function Enterdishes({ route, navigation }) {
                                     <View style={styles.dishTextContainer}>
                                         <Text style={styles.dishText}>{dish}</Text>
                                         <TouchableOpacity onPress={() => handleDeleteDish(index + chunkIndex * 5)}>
-                                            <Image source={require("./assets/delete.png")} style={styles.deleteIcon} />
+                                            <Image source={require("../assets/delete.png")} style={styles.deleteIcon} />
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -106,7 +106,7 @@ export default function Enterdishes({ route, navigation }) {
             <View style={styles.nextContainer}>
             <TouchableOpacity style = {styles.next} onPress={handleDishes}>
                     <Text style = {styles.textNext}>Next</Text>
-                    <Image source={require("./assets/next.png")} style={styles.nextImg}/>
+                    <Image source={require("../assets/next.png")} style={styles.nextImg}/>
             </TouchableOpacity>
             </View>
             </SafeAreaView>

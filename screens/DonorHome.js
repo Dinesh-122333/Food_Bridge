@@ -21,21 +21,21 @@ export default function HomeScreen({ route, navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.currentContainer}>
-          <Image source={require("./assets/arrow.png")} style={styles.locationImage} />
+          <Image source={require("../assets/arrow.png")} style={styles.locationImage} />
           <Text style={styles.userLocation}>{formattedLocation}</Text>
         </View>
-        <Image source={require("./assets/account.png")} style = {styles.usericon}/>
+        <Image source={require("../assets/account.png")} style = {styles.usericon}/>
         <Text style={styles.userfullLocation}>{truncatedLocation}</Text>
         <View style={styles.line} />
         <View>
             <Text style = {styles.headder}>Hey <Text style={styles.name}>{name}</Text></Text>
             <Text style = {styles.description}>Begin with a donation and let the goodness spread</Text>
             <View>
-              <Image source={require("./assets/primaryimage.png")} style = {styles.primaryimg}/>
+              <Image source={require("../assets/primaryimage.png")} style = {styles.primaryimg}/>
             </View>
             <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={handlePress}>
-            <Image source={require("./assets/plus.png")} style={styles.plus}/>
+            <Image source={require("../assets/plus.png")} style={styles.plus}/>
             <Text style={styles.buttontext}>Add to Donation</Text>
             </TouchableOpacity></View>
         </View>
@@ -52,15 +52,15 @@ export default function HomeScreen({ route, navigation }) {
         </View> */}
         <View style={styles.navbar}>
         <View>
-            <Image source={require("./assets/homepage.png")} style = {styles.homeicon}/>
+            <Image source={require("../assets/homepage.png")} style = {styles.homeicon}/>
             <Text>Home</Text>
         </View>
         <View>
-            <Image source={require("./assets/donateplus.png")} style = {styles.donateplusicon}/>
+            <Image source={require("../assets/donateplus.png")} style = {styles.donateplusicon}/>
             <Text style = {styles.navtext}>Donate</Text>
         </View>
         <View>
-            <Image source={require("./assets/message.png")} style = {styles.messageicon}/>
+            <Image source={require("../assets/message.png")} style = {styles.messageicon}/>
             <Text style = {styles.navtext}>Chat</Text>
         </View>
         </View>

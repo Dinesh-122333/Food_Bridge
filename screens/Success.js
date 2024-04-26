@@ -10,7 +10,7 @@ export default function Success({route, navigation}){
 
     return (
         <SafeAreaView style={styles.container}>
-            <Image source={require("./assets/success.png")} style={styles.successImg}/>
+            <Image source={require("../assets/success.png")} style={styles.successImg}/>
             <View style={styles.successDescriptionContainer}>
                 <Text style={styles.successDescription}>
                     Thank you for posting your donation.{'\n'}

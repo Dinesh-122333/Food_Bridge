@@ -189,12 +189,12 @@ export default function EnterDetails({ route, navigation }) {
         <SafeAreaView style={styles.container}>
             <View style={styles.upper}>
                 <View style={styles.header}>
-                    <Image source={require("./assets/keyboard_backspace.png")} style={styles.back} />
+                    <Image source={require("../assets/keyboard_backspace.png")} style={styles.back} />
                     <Text style={styles.title}>Enter Details</Text>
-                    <Image source={require("./assets/info.png")} style={styles.info} />
+                    <Image source={require("../assets/info.png")} style={styles.info} />
                 </View>
                 <View style={styles.line} />
-                <Image source={require("./assets/progress_bar.png")} style={styles.progressBar} />
+                <Image source={require("../assets/progress_bar.png")} style={styles.progressBar} />
                 <View style={styles.progressDetails}>
                     <Text style={styles.primaryDetails}>Primary Details</Text>
                     <Text style={styles.dishes}>Name of Dishes</Text>
@@ -226,9 +226,9 @@ export default function EnterDetails({ route, navigation }) {
             <View style={styles.categoryContainer}>
                 <Text style={styles.category}>Food Category</Text>
                 <View style={styles.categoryButtons}>
-                    {renderCategoryButton('Veg', require('./assets/veg.png'))}
-                    {renderCategoryButton('Non-Veg', require('./assets/nonveg.png'))}
-                    {renderCategoryButton('Both', require('./assets/both.png'))}
+                    {renderCategoryButton('Veg', require('../assets/veg.png'))}
+                    {renderCategoryButton('Non-Veg', require('../assets/nonveg.png'))}
+                    {renderCategoryButton('Both', require('../assets/both.png'))}
                 </View>
             </View>
             {/* <View style={styles.mealcontainer}>
@@ -248,9 +248,9 @@ export default function EnterDetails({ route, navigation }) {
             <View style={styles.mealContainer}>
                 <Text style={styles.category}>Meal Type</Text>
                 <View style={styles.mealButtons}>
-                    {rendermenuButton('Breakfast', require('./assets/breakfast.png'))}
-                    {rendermenuButton('Lunch', require('./assets/lunch.png'))}
-                    {rendermenuButton('Dinner', require('./assets/dinner.png'))}
+                    {rendermenuButton('Breakfast', require('../assets/breakfast.png'))}
+                    {rendermenuButton('Lunch', require('../assets/lunch.png'))}
+                    {rendermenuButton('Dinner', require('../assets/dinner.png'))}
                 </View>
             </View>
             <View style={styles.additionalcontainer}>
@@ -262,7 +262,7 @@ export default function EnterDetails({ route, navigation }) {
             <View style={styles.nextContainer}>
             <TouchableOpacity style = {styles.next} onPress={handleDetails}>
                     <Text style = {styles.textNext}>Next</Text>
-                    <Image source={require("./assets/next.png")} style={styles.nextImg}/>
+                    <Image source={require("../assets/next.png")} style={styles.nextImg}/>
             </TouchableOpacity>
             </View>
         </SafeAreaView>
